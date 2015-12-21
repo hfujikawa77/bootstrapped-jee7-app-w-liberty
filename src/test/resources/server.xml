@@ -1,0 +1,31 @@
+<server description="new server">
+
+	<featureManager>
+		<!-- <feature>javaee-7.0</feature> -->
+		<!-- <feature>localConnector-1.0</feature> -->
+		<feature>jaxrs-2.0</feature>
+		<feature>jpa-2.1</feature>
+		<feature>cdi-1.2</feature>
+	</featureManager>
+
+	<basicRegistry id="basic" realm="BasicRealm" />
+
+	<keyStore id="defaultKeyStore" password="{xor}Lz4sLCgwLTs=" />
+
+	<httpEndpoint id="defaultHttpEndpoint" httpPort="${as.port}" />
+
+	<dataSource id="jee7-app-ds" jndiName="jdbc/jee7-app-ds">
+		<jdbcDriver libraryRef="DerbyLib" />
+		<properties.derby.embedded databaseName="${db.name}"
+			createDatabase="create" />
+	</dataSource>
+
+	<library id="DerbyLib">
+		<fileset dir="${localRepository}/org/apache/derby/derby/${derby.version}"
+			includes="*" />
+	</library>
+
+	<webApplication id="${appName}" location="${appLocation}"
+		name="${appName}" contextRoot="/" />
+
+</server>

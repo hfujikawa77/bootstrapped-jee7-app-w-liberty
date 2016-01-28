@@ -1,31 +1,35 @@
 <server description="new server">
 
-	<featureManager>
-		<!-- <feature>javaee-7.0</feature> -->
-		<!-- <feature>localConnector-1.0</feature> -->
-		<feature>jaxrs-2.0</feature>
-		<feature>jpa-2.1</feature>
-		<feature>cdi-1.2</feature>
-	</featureManager>
+  <!-- アプリケーションが利用するJava EEフィーチャを指定。JAX-RS, JPA, CDIを指定 -->
+  <featureManager>
+    <!-- <feature>javaee-7.0</feature> -->
+    <!-- <feature>localConnector-1.0</feature> -->
+    <feature>jaxrs-2.0</feature>
+    <feature>jpa-2.1</feature>
+    <feature>cdi-1.2</feature>
+  </featureManager>
 
-	<basicRegistry id="basic" realm="BasicRealm" />
+  <basicRegistry id="basic" realm="BasicRealm" />
 
-	<keyStore id="defaultKeyStore" password="{xor}Lz4sLCgwLTs=" />
+  <keyStore id="defaultKeyStore" password="{xor}Lz4sLCgwLTs=" />
 
-	<httpEndpoint id="defaultHttpEndpoint" httpPort="${as.port}" />
+  <httpEndpoint id="defaultHttpEndpoint" httpPort="${as.port}" />
 
-	<dataSource id="jee7-app-ds" jndiName="jdbc/jee7-app-ds">
-		<jdbcDriver libraryRef="DerbyLib" />
-		<properties.derby.embedded databaseName="${db.name}"
-			createDatabase="create" />
-	</dataSource>
+  <!-- データソース設定。指定したロケーション(/target/derby/<db_name>)にDBが存在しなければ自動生成する -->
+  <dataSource id="jee7-app-ds" jndiName="jdbc/jee7-app-ds">
+    <jdbcDriver libraryRef="DerbyLib" />
+    <properties.derby.embedded databaseName="${db.name}"
+      createDatabase="create" />
+  </dataSource>
 
-	<library id="DerbyLib">
-		<fileset dir="${localRepository}/org/apache/derby/derby/${derby.version}"
-			includes="*" />
-	</library>
+  <!-- Mavenローカルリポジトリにある組み込みDerbyのJARファイルロケーションを指定 -->
+  <library id="DerbyLib">
+    <fileset dir="${localRepository}/org/apache/derby/derby/${derby.version}"
+      includes="*" />
+  </library>
 
-	<webApplication id="${appName}" location="${appLocation}"
-		name="${appName}" contextRoot="/" />
+  <!-- アプリケーション情報。名前, ロケーション(/target/<app_name>), コンテキストルートを指定 -->
+  <webApplication id="${appName}" location="${appLocation}"
+    name="${appName}" contextRoot="/" />
 
 </server>

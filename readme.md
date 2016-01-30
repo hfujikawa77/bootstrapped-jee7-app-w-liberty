@@ -1,7 +1,7 @@
 ##はじめに
-WAS Liberty ProfileとMavenを使った自動自動式Java EE7アプリケーションの雛形です。
-必要ソフトウェアの収集と利用可能化、アプリケーション始動を1つのコマンドで完了します。
-書いたプログラムをすぐ動かせるので技術検証や学習用途に最適です。
+WAS Liberty ProfileとMavenを使った自動自動式Java EE7アプリケーションの雛形です。  
+必要ソフトウェアの収集と利用可能化、アプリケーション始動を1つのコマンドで完了します。  
+書いたプログラムをすぐ動かせるので技術検証や学習用途に最適です。  
 
 ##前提
 JDK(1.8 or Later)がインストールされていること。
@@ -34,9 +34,9 @@ curl http://localhost:8080/rest/book/myTitle/myAuthor -X PUT
 ```
 
 ##アプリケーション概要
-本の情報を登録、照会できるRest API。本の情報はDBに保持します。
-登録：  http://localhost:8080/rest/book/{title}/{author} -X PUT
-照会：  http://localhost:8080/rest/book/
+本の情報を登録、照会できるRest API。本の情報はDBに保持します。  
+登録：  http://localhost:8080/rest/book/{title}/{author} -X PUT  
+照会：  http://localhost:8080/rest/book/  
 
 ##実行構成
 cURL -> JAX-RS -> CDI -> JPA -> DB(組み込みDerby)
